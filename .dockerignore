@@ -1,0 +1,25 @@
+# .dockerignore
+
+node_modules
+.git
+.vscode
+apps/frontend/dist
+apps/backend/tmp
+apps/backend/main```
+
+#### Step 4: Create a simple `railway.json`
+
+Now, we go back to the `railway.json` file, but it will be extremely simple. All it needs to do is tell Railway to use Docker.
+
+Create a `railway.json` file in the **root** of your project.
+
+```json
+{
+  "$schema": "https://railway.app/railway.schema.json",
+  "build": {
+    "builder": "DOCKERFILE"
+  },
+  "deploy": {
+    "healthcheckPath": "/api/health"
+  }
+}
