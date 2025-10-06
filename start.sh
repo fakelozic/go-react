@@ -6,6 +6,7 @@ set -e
 # --- Build Phase ---
 echo "--- Building Frontend ---"
 cd ./apps/frontend
+curl -fsSL https://bun.sh/install | bash
 bun install
 bun run build
 
