@@ -68,7 +68,7 @@ func main() {
 	app.Delete("/api/todos/:id", deleteTodos)
 
 	if cfg.Primary.Env == "production" {
-		fmt.Println("yup dev")
+		fmt.Println("yup production")
 		app.Static("/", "../frontend/dist")
 	}
 
