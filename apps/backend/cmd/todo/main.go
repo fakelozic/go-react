@@ -68,9 +68,10 @@ func main() {
 	app.Delete("/api/todos/:id", deleteTodos)
 
 	if cfg.Primary.Env == "production" {
-		fmt.Println("yup production")
-		app.Static("/", "../frontend/dist")
-	}
+    fmt.Println("Serving frontend in production mode")
+    // This is the correct path inside the Docker container
+    app.Static("/", "apps/frontend/dist")
+}
 
 	err = app.Listen(":" + cfg.Server.Port)
 	if err != nil {
