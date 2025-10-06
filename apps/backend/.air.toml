@@ -1,0 +1,32 @@
+# .air.toml
+# Placed in apps/backend/
+
+root = "."
+tmp_dir = "tmp"
+
+[build]
+  # Correctly point to the main entrypoint of your application
+  cmd = "go build -o ./tmp/main ./cmd/todo/main.go"
+
+  # The binary `air` will run (must match the -o path in cmd)
+  bin = "tmp/main"
+
+  include_ext = ["go", "tpl", "tmpl", "html", "env"]
+  exclude_dir = ["assets", "tmp", "vendor"]
+  delay = 1000
+  stop_on_error = false
+
+[log]
+  time = true
+
+[color]
+  main = "magenta"
+  watcher = "cyan"
+  build = "yellow"
+  runner = "green"
+
+[misc]
+  clean_on_exit = true
+
+[screen]
+  clear_on_rebuild = true
