@@ -47,7 +47,9 @@ func LoadConfig() (*Config, error) {
 	if err != nil {
 		logger.Fatal().Err(err).Msg("could not unmarshal main config")
 	}
-
+	if railwayPort := os.Getenv("PORT"); railwayPort != "" {
+		mainConfig.Server.Port = railwayPort
+	}
 	validate := validator.New()
 
 	err = validate.Struct(mainConfig)

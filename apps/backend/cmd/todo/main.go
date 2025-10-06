@@ -57,13 +57,17 @@ func main() {
 		}))
 	}
 
+	app.Get("/api/health", func(c *fiber.Ctx) error {
+		return c.Status(200).JSON(fiber.Map{"status": "ok"})
+	})
+
 	app.Get("/api/todos", listTodos)
 	app.Post("/api/todos", createTodo)
 	app.Get("/api/todos/:id", getTodo)
 	app.Patch("/api/todos/:id", updateTodo)
 	app.Delete("/api/todos/:id", deleteTodos)
 
-	if cfg.Primary.Env == "development" {
+	if cfg.Primary.Env == "production" {
 		fmt.Println("yup dev")
 		app.Static("/", "../frontend/dist")
 	}
